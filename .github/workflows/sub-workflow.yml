@@ -1,0 +1,33 @@
+name: sub-workflow
+
+on:
+  workflow_run:
+    workflows: [main-workflow]
+    types:
+      - completed
+
+jobs:
+  check_and_follow_up:
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - run: git branch
+
+      - name: Get main pr_number & pr_head_sha
+        run: |
+          pr_number="${{ github.event.workflow_run.pull_requests[0].number }}"
+          pr_head_sha="${{ github.event.workflow_run.pull_requests[0].head.sha }}"
+
+      - uses: LouisBrunner/checks-action@v1.6.0
+        if: always()
+        with:
+          sha: ${{ github.event.workflow_run.pull_requests[0].head.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Added checks
+          conclusion: ${{ job.status }}
+          output: |
+            {"summary":"${{ steps.checks.outputs.summary }}"}
