@@ -2,7 +2,11 @@ name: main-workflow
 
 on:
   pull_request:
+<<<<<<< HEAD
     branches: main
+=======
+    branches: master
+>>>>>>> ca2a5ef (change2)
 
 jobs:
   setup:
