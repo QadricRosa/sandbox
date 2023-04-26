@@ -3,7 +3,6 @@ name: main-workflow
 on:
   pull_request:
     branches: master
-    types: [synchronize]
 
 jobs:
   setup:
