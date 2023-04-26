@@ -2,16 +2,12 @@ name: main-workflow
 
 on:
   pull_request:
-<<<<<<< HEAD
     branches: main
-=======
-    branches: master
->>>>>>> ca2a5ef (change2)
 
 jobs:
+  runs-on: ubuntu-latest
   setup:
     timeout-minutes: 15
-
     steps:
       - uses: actions/checkout@v3.1.0
         with:
