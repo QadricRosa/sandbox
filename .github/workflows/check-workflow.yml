@@ -1,11 +1,11 @@
 name: check-workflow
 
 on:
-  check_run:
+  check_suite:
     types: [completed]
 
 jobs:
-  check_and_follow_up:
+  some-more-checks:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -24,8 +24,8 @@ jobs:
           echo pr_number
           echo pr_head_sha
 
-          echo github.event.check_run.conclusion
-          echo github.event.check_run.name
+          echo ${{ github.event.check_suite.conclusion }}
+          echo ${{ github.event.check_suite.name }}
 
           echo summary="Updated ;) via check-workflow" >> $GITHUB_OUTPUT
           echo state="pending" >> $GITHUB_OUTPUT
