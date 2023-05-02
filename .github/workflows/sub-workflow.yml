@@ -25,6 +25,7 @@ jobs:
 
           echo pr_number
           echo pr_head_sha
+          echo change
 
           echo ::set-output name=summary::"PR checks passed!\n"
 
