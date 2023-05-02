@@ -1,15 +1,13 @@
-name: sub-workflow
+name: check-workflow
 
 on:
-  workflow_run:
-    workflows: [main-workflow]
-    types:
-      - completed
+  check_run:
+    types: [completed]
 
 jobs:
   check_and_follow_up:
-    timeout-minutes: 30
     runs-on: ubuntu-latest
+    if: ${{ github.event.check_run.conclusion == 'success' && github.event.check_run.name == 'Added checks' }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -26,9 +24,8 @@ jobs:
 
           echo pr_number
           echo pr_head_sha
-          echo change 5
 
-          echo summary="PR checks passed!\n" >> $GITHUB_OUTPUT
+          echo summary="Updated ;) via check-workflow" >> $GITHUB_OUTPUT
           echo state="pending" >> $GITHUB_OUTPUT
 
       - uses: LouisBrunner/checks-action@v1.6.0
