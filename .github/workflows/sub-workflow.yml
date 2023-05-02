@@ -26,7 +26,7 @@ jobs:
 
           echo pr_number
           echo pr_head_sha
-          echo change 3
+          echo change 4
 
           echo summary="PR checks passed!\n" >> $GITHUB_OUTPUT
 
