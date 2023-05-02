@@ -29,13 +29,17 @@ jobs:
           echo change 4
 
           echo summary="PR checks passed!\n" >> $GITHUB_OUTPUT
+          echo state="pending" >> $GITHUB_OUTPUT
 
       - uses: LouisBrunner/checks-action@v1.6.0
-        if: always()
+        if: always() && ${{ steps.checks.outputs.state == 'pending' }}
         with:
           sha: ${{ github.event.workflow_run.pull_requests[0].head.sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Added checks
           conclusion: ${{ job.status }}
           output: |
-            {"summary":"${{ steps.checks.outputs.summary }}"}
+            {
+              "title":"${{ steps.checks.outputs.summary }}",
+              "summary":"${{ steps.checks.outputs.summary }}"
+            }
