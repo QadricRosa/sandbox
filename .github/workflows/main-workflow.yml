@@ -25,7 +25,7 @@ jobs:
           echo $statuses
           echo "---"
 
-          for status in $(fromJSON($statuses));
+          for status in $(toJSON($statuses));
           do
             echo $status
           done
