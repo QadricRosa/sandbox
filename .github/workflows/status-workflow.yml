@@ -3,12 +3,17 @@ name: Argos update check
 on:
   status
 
+env:
+    GH_TOKEN: ${{ github.token }}
+
 jobs:
   status-workflow-job:
     runs-on: ubuntu-latest
+    if: {{ github.event.sender.id == 93592207 && github.event.state == "success" }}
     steps:
       - name: output logs
         id: statuses
         run: |
           echo ${{ toJSON(github.event) }}
           echo ${{ github.event.commit.sha }}
+          echo ${{ github.event.sha }}
