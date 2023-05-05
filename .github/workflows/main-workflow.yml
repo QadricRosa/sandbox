@@ -29,7 +29,7 @@ jobs:
           echo $statuses
           echo "---"
 
-          jsonObject=$(echo $statuses | jq -r .)
+          # jsonObject=$(echo $statuses | jq -r .)
 
           for status in $jsonObject;
           do
