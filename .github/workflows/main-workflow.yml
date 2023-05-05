@@ -20,4 +20,7 @@ jobs:
       - name: Tryouts
         run: |
           json= gh api /repos/QadricRosa/sandbox/statuses/a2ca8383a3006edb7b67270a1da36fae41de1651
-          echo $json
+          for i in $json
+          do
+            echo $i.state
+          done
