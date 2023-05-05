@@ -19,8 +19,8 @@ jobs:
 
       - name: Tryouts
         run: |
-          json= gh api /repos/QadricRosa/sandbox/statuses/a2ca8383a3006edb7b67270a1da36fae41de1651
-          for i in $json
+          for i in ${{ toJSON(gh api /repos/QadricRosa/sandbox/statuses/a2ca8383a3006edb7b67270a1da36fae41de1651) }};
           do
             echo "$i"
           done
+          
