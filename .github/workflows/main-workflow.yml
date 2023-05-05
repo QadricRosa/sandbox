@@ -23,7 +23,7 @@ jobs:
           
           echo $statuses
 
-          for status in ${{ toJSON(statuses) }};
+          for status in ${{ toJSON($statuses) }};
           do
             echo status
           done
