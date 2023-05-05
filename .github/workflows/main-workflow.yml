@@ -21,12 +21,15 @@ jobs:
         run: |
           statuses=$(gh api /repos/QadricRosa/sandbox/statuses/a2ca8383a3006edb7b67270a1da36fae41de1651)
           
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+
           echo "---"
           echo $statuses
           echo "---"
 
           jsonObject=$(echo $statuses | jq -r .)
-          jsonObject=$(echo $jsonObject | fromJSON)
 
           for status in $jsonObject;
           do
