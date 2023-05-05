@@ -17,21 +17,10 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Tryouts 1
-        uses: actions/github-script@v6.3.1
-        with:
-          result-encoding: string
-          script: |
-            const api= gh api /repos/QadricRosa/sandbox/statuses/a2ca8383a3006edb7b67270a1da36fae41de1651
-            const statuses= JSON.parse(api);
-
-            for (const status of statuses){
-              console.log(status.state)
-            }
-
       - name: Tryouts 2
         run: |
-          for i in gh api /repos/QadricRosa/sandbox/statuses/a2ca8383a3006edb7b67270a1da36fae41de1651;
+          statuses= gh api /repos/QadricRosa/sandbox/statuses/a2ca8383a3006edb7b67270a1da36fae41de1651
+          for status in statuses;
           do
-            echo "$i"
+            echo status
           done
