@@ -29,9 +29,9 @@ jobs:
           echo $statuses
           echo "---"
 
-          # jsonObject=$(echo $statuses | jq -r .)
+          # statuses=$(echo $statuses | jq -r .)
 
-          for status in $jsonObject;
+          for status in $statuses;
           do
             echo $status
           done
