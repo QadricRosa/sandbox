@@ -23,7 +23,8 @@ jobs:
           
           echo $statuses
 
-          for status in $statuses;
+          for i in $statuses;
           do
-            echo $status
+            echo $i
+            echo $status[i]
           done
