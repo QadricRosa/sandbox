@@ -10,6 +10,5 @@ jobs:
       - name: output logs
         id: statuses
         run: |
-          echo ${{ github.event.creator.id }}
-          echo ${{ github.event.state }}
-          echo ${{ toJSON(github.event.commit) }}
+          echo ${{ toJSON(github.event) }}
+          echo ${{ github.event.commit.sha }}
