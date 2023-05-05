@@ -25,6 +25,7 @@ jobs:
           echo $statuses
           echo "---"
 
+          jsonObject=$(echo $statuses | jq -r .)
           jsonObject=$(echo $statuses | fromJSON)
 
           for status in $jsonObject;
