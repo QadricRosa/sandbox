@@ -25,5 +25,5 @@ jobs:
 
           for status in $statuses;
           do
-            echo status
+            echo $status
           done
