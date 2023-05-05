@@ -23,7 +23,7 @@ jobs:
 
           # statuses=$(echo $statuses | jq -r .)
 
-          for status in $statuses | jq .[];
+          for status in ($statuses | jq .[]);
           do
             echo $status
           done
