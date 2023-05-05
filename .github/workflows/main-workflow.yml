@@ -21,9 +21,9 @@ jobs:
         run: |
           statuses=$(gh api /repos/QadricRosa/sandbox/statuses/a2ca8383a3006edb7b67270a1da36fae41de1651)
           
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
+          statuses="${statuses//'%'/'%25'}"
+          statuses="${statuses//$'\n'/'%0A'}"
+          statuses="${statuses//$'\r'/'%0D'}"
 
           echo "---"
           echo $statuses
