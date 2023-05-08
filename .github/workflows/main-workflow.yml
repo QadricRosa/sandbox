@@ -21,9 +21,7 @@ jobs:
         run: |
           statuses=$(gh api /repos/QadricRosa/sandbox/statuses/a2ca8383a3006edb7b67270a1da36fae41de1651)
 
-          # statuses=$(echo $statuses | jq -r .)
-
-          statusNb=$($statuses | jq 'length')
+          statusNb=$($statuses | jq length)
 
           echo $statusNb
 
