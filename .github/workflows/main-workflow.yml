@@ -27,5 +27,6 @@ jobs:
 
           for(( i=0; i<=statusNb; i++ ));
           do
-            echo "$statuses" | jq '.[i]'
+            pos=$i
+            echo "$statuses" | jq '.[$pos]'
           done
