@@ -23,9 +23,9 @@ jobs:
 
           statusNb=$($statuses | jq '. | length')
 
-          echo $statusNb
+          echo -n $statusNb
 
           for (( i=0; i<=statusNb; i++ ))
           do
-            echo $($statuses | jq .[$i]);
+            echo -n $($statuses | jq .[$i]);
           done
