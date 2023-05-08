@@ -23,6 +23,6 @@ jobs:
 
           echo $statuses
 
-          statusNb=$("$statuses" | jq 'length' --args)
+          statusNb=$(jq 'length' --args "$statuses")
 
           echo $statusNb
