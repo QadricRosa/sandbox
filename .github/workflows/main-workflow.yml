@@ -25,4 +25,4 @@ jobs:
 
           statusNb=$("$statuses" | jq 'length')
 
-          echo $statusNb
+          echo "$statusNb"
