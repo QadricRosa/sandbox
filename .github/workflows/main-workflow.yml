@@ -23,4 +23,4 @@ jobs:
 
           echo $statuses
 
-          statusNb=$(jq 'length' "$statuses")
+          statusNb=$(jq --jsonargs 'length' "$statuses")
