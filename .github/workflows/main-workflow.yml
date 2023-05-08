@@ -24,3 +24,8 @@ jobs:
           statusNb=$(jq 'length' --jsonargs <<< "$statuses")
 
           echo "$statusNb"
+
+          for(( i=0; i<=statusNb; i++ ));
+          do
+            echo "$statuses" | jq '.[$i]'
+          done
