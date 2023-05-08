@@ -27,7 +27,7 @@ jobs:
 
           echo $statusNb
 
-          for (( i=0; i <= $statusNb; i++))
+          for (( i=0; $i<=$statusNb; $i++ ))
           do
             echo $($statuses | jq .[i]);
           done
