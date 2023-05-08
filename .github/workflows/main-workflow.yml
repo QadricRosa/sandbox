@@ -21,6 +21,6 @@ jobs:
         run: |
           statuses="$(gh api /repos/QadricRosa/sandbox/statuses/a2ca8383a3006edb7b67270a1da36fae41de1651 --jq '.')"
 
-          status="$statuses" | jq 'length' --jsonargs
+          statusNb=$(jq 'length' --jsonargs <<< "$statuses")
 
-          echo $status
+          echo "$statusNb"
