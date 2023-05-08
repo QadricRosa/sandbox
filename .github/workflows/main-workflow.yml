@@ -27,5 +27,5 @@ jobs:
 
           for status in "$(jq '.[]' --jsonargs <<< "$statuses")"
           do
-            echo "${status.state}"
+            echo "$status" | jq '.state'
           done
