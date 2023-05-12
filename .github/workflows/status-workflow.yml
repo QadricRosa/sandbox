@@ -9,12 +9,14 @@ env:
 jobs:
   status-workflow-job:
     runs-on: ubuntu-latest
-    if: ${{ contains(fromJSON('["success", "failure"]'), github.event.state) }}
+    if: ${{ github.event.sender.id == 93592207 && contains(fromJSON('["success", "failure"]'), github.event.state) }}
     steps:
       - name: Retrieve state
         id: status
         run: |
-          state="$(gh api /repos/QadricRosa/sandbox/commits/${{ github.event.head.sha }}/status --jq '.state')"
+          echo ${{ github.event.sha }}
+          
+          state="$(gh api /repos/QadricRosa/sandbox/commits/${{ github.event.sha }}/status --jq '.state')"
 
           echo state="$state" >> $GITHUB_OUTPUT
 
