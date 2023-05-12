@@ -23,3 +23,5 @@ jobs:
           state="$(gh api /repos/QadricRosa/sandbox/commits/${{ github.event.pull_request.head.ref }}/status --jq '.state')"
 
           echo $state
+
+          echo "$(gh api /repos/QadricRosa/sandbox/commits/${{ github.event.pull_request.head.ref }}/status --jq '.statuses')"
