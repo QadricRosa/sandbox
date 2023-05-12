@@ -24,7 +24,7 @@ jobs:
         uses: LouisBrunner/checks-action@v1.6.0
         if: ${{ steps.status.outputs.state == 'failure' || steps.status.outputs.state == 'success' }}
         with:
-          sha: ${{ github.event.head.sha }}
+          sha: ${{ github.event.sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
           name: Added checks
           conclusion: ${{ steps.status.outputs.state }}
