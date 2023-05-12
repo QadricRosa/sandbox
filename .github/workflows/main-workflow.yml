@@ -17,8 +17,9 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Tryouts 2
+      - name: Retrieve state
+        id: status
         run: |
-          status="$(gh api /repos/QadricRosa/sandbox/commits/a2ca8383a3006edb7b67270a1da36fae41de1651/status --jq '.state')"
+          state="$(gh api /repos/QadricRosa/sandbox/commits/a2ca8383a3006edb7b67270a1da36fae41de1651/status --jq '.state')"
 
-          echo "$status"
+          echo $state
