@@ -3,12 +3,31 @@ name: Argos update check
 on:
   status
 
+env:
+    GH_TOKEN: ${{ github.token }}
+
 jobs:
   status-workflow-job:
     runs-on: ubuntu-latest
+    if: ${{ contains(fromJSON('["success", "failure"]'), github.event.state) }}
     steps:
-      - name: output logs
-        id: statuses
+      - name: Retrieve state
+        id: status
         run: |
-          echo ${{ toJSON(github.event) }}
-          echo ${{ github.event.commit.sha }}
+          state="$(gh api /repos/QadricRosa/sandbox/commits/${{ github.event.head.sha }}/status --jq '.state')"
+
+          echo state="$state" >> $GITHUB_OUTPUT
+
+      - name: Modify check
+        uses: LouisBrunner/checks-action@v1.6.0
+        if: ${{ steps.status.outputs.state == 'failure' || steps.status.outputs.state == 'success' }}
+        with:
+          sha: ${{ github.event.head.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Added checks
+          conclusion: ${{ steps.status.outputs.state }}
+          output: |
+            {
+              "title":"${{ steps.checks.outputs.state }}",
+              "summary":"${{ steps.checks.outputs.state }}"
+            }
