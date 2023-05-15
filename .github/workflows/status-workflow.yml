@@ -20,9 +20,9 @@ jobs:
 
           echo state="$state" >> $GITHUB_OUTPUT
 
-      - name: Modify check
+      - name: Fail check
         uses: LouisBrunner/checks-action@v1.6.0
-        if: ${{ steps.status.outputs.state == 'failure' || steps.status.outputs.state == 'success' }}
+        if: ${{ steps.status.outputs.state == 'failure' }}
         with:
           sha: ${{ github.event.sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -30,6 +30,20 @@ jobs:
           conclusion: ${{ steps.status.outputs.state }}
           output: |
             {
-              "title":"${{ steps.checks.outputs.state }}",
-              "summary":"${{ steps.checks.outputs.state }}"
+              "title":"Failing checks",
+              "summary":"Failing checks, please verify the failing checks and provide a follow-up commit to solve them"
+            }
+        
+      - name: Success check
+        uses: LouisBrunner/checks-action@v1.6.0
+        if: ${{ steps.status.outputs.state == 'success' }}
+        with:
+          sha: ${{ github.event.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Added checks
+          conclusion: ${{ steps.status.outputs.state }}
+          output: |
+            {
+              "title":"All green!",
+              "summary":"All checks have passed, merge can proceed"
             }
